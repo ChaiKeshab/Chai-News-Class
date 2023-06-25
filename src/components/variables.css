@@ -11,16 +11,16 @@
   --left-hide: 100vw;
   --opacity-show: 1;
   --opacity-hide: 0;
-  --background-color-light: white;
-  --nav-light: #D3EEFF;
+  --background-color-light: #F6F8FC;
+  --nav-light: #FFFFFF;
   --text-color-light: black;
-  --select-text-color-light: white;
+  --article-color-light: white;
   --background-image-light: url(../Images/snow.jpg);
   --background-image-light-mobile: url(../Images/snow-mobile.jpg);
-  --background-color-dark: #0E0E0E;
-  --nav-dark: #041F3C;
-  --text-color-dark: #D1D5DB;
-  --select-text-color-dark: #F8F8F8;
+  --background-color-dark: #292A2D;
+  --nav-dark: #202124;
+  --text-color-dark: #CDC1C6;
+  --article-color-dark: #1F1F1F;
   --background-image-dark: url(../Images/Kiln.jpg);
   --background-image-dark-mobile: url(../Images/kiln-mobile.jpg);
 }
@@ -31,7 +31,7 @@
   --background-color: var(--background-color-light);
   --nav: var(--nav-light);
   --text-color: var(--text-color-light);
-  --select-text-color: var(--select-text-color-light);
+  --article-color: var(--article-color-light);
   --background-image: var(--background-image-light);
   --background-image-mobile: var(--background-image-light-mobile);
 }
@@ -42,7 +42,7 @@
   --background-color: var(--background-color-dark);
   --nav: var(--nav-dark);
   --text-color: var(--text-color-dark);
-  --select-text-color: var(--select-text-color-dark);
+  --article-color: var(--article-color-dark);
   --background-image: var(--background-image-dark);
   --background-image-mobile: var(--background-image-dark-mobile);
 }

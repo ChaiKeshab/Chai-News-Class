@@ -10,8 +10,8 @@ import './Navbar.css'
 
 // rcc (react-class-component)
 export default class Navbar extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       mode: false,
       theme: 'darkMode',
@@ -55,6 +55,7 @@ export default class Navbar extends Component {
   }
 
   render() {
+    let {hamBar, mode} = this.state
     return (
       <div className="navbar">
         <div className="container-navbar">
@@ -62,19 +63,19 @@ export default class Navbar extends Component {
 
             <Link to="/" className="logo">{this.props.title}<span>{this.props.spanTitle}</span></Link>
           </div>
-          <img id="mobile-cta" className={`mobile-menu ${this.state.hamBar ? 'hide' : 'show'}`} src={menu} alt="Open Navigation" onClick={() => this.toggleHambar()} />
+          <img id="mobile-cta" className={`mobile-menu ${hamBar ? 'hide' : 'show'}`} src={menu} alt="Open Navigation" onClick={() => this.toggleHambar()} />
 
           <nav>
-            <img id="mobile-exit" className={`mobile-menu-exit ${this.state.hamBar ? 'show' : 'hide'}`} src={exit} alt="Close Navigation" onClick={() => this.toggleHambar()} />
+            <img id="mobile-exit" className={`mobile-menu-exit ${hamBar ? 'show' : 'hide'}`} src={exit} alt="Close Navigation" onClick={() => this.toggleHambar()} />
 
-            <ul className={`primary-nav ${this.state.hamBar ? 'show' : 'hide'}`}>
+            <ul className={`primary-nav ${hamBar ? 'show' : 'hide'}`}>
 
-              <li><Link to="/About" onClick={() => this.toggleHambar()} className={`${this.state.hamBar ? 'hide' : 'show'}`}>About</Link></li>
-              <li><Link to="/Projects" onClick={() => this.toggleHambar()} className={`${this.state.hamBar ? 'hide' : 'show'}`}>Projects</Link></li>
-              <li className='resume-list'><a className='resume' href='/' target='_blank' rel='noreferrer'>Resume</a></li>
+              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Home</Link></li>
+              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>News</Link></li>
+              {/* <li className='resume-list'><a className='resume' href='/' target='_blank' rel='noreferrer'>Resume</a></li> */}
 
-              <li><img className={`sun ${this.state.mode ? 'show' : 'hide'}`} onClick={() => this.toggleMode()} src={sun} alt="Dark Mode" /></li>
-              <li><img className={`moon ${this.state.mode ? 'hide' : 'show'}`} onClick={() => this.toggleMode()} src={moon} alt="Light Mode" /></li>
+              <li><img className={`sun ${mode ? 'show' : 'hide'}`} onClick={() => this.toggleMode()} src={sun} alt="Dark Mode" /></li>
+              <li><img className={`moon ${mode ? 'hide' : 'show'}`} onClick={() => this.toggleMode()} src={moon} alt="Light Mode" /></li>
             </ul>
           </nav>
         </div>
