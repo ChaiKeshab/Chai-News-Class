@@ -81,11 +81,15 @@ export default class News extends Component {
     render() {
         return (
             <div className='main'>
-                {this.state.articles.map((element) => {
-                    return <div className='container-news' key={element.url}>
-                        <NewsItem title={element.title} link={element.url} image={element.urlToImage} />
-                    </div>
-                })}
+                <div className='wrap'>
+                    {this.state.articles.map((element) => {
+                        return <div className='container-news' key={element.url}>
+                            <NewsItem title={element.title} link={element.url} image={element.urlToImage}
+                                description={`${element.description.slice(0, 169)}...`}
+                                postDate={element.publishedAt} />
+                        </div>
+                    })}
+                </div>
             </div>
         )
     }
