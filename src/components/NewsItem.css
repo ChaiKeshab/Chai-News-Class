@@ -30,13 +30,12 @@
   place-content: end space-between;
 }
 .article-newsItem .c-one .c-two .link-cta .c-three h1 {
-  font-weight: 500;
-  font-size: 20px;
+  font-weight: bold;
+  font-size: 22px;
   margin-bottom: 5px;
 }
 .article-newsItem .c-one .c-two .link-cta .c-three .para {
   margin: 0;
-  font-weight: 300;
   font-size: 14px;
 }
 .article-newsItem .c-one .c-two .link-cta .c-three .thumbnail {
@@ -52,13 +51,12 @@
     font-size: 8px;
   }
   .article-newsItem .c-one .c-two .link-cta .c-three h1 {
-    font-weight: 500;
+    font-weight: bold;
     font-size: 18px;
     margin-bottom: 5px;
   }
   .article-newsItem .c-one .c-two .link-cta .c-three .para {
     margin: 0;
-    font-weight: 300;
     font-size: 12px;
   }
   .article-newsItem .c-one .c-two .link-cta .c-three .thumbnail {
