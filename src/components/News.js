@@ -26,7 +26,7 @@ export default class News extends Component {
             url: 'https://api.newscatcherapi.com/v2/search',
             params: { q: 'anime', lang: 'en', sort_by: 'relevancy', page: '1' },
             headers: {
-                'x-api-key': 'your-api-key',
+                'x-api-key': 'yuWR60YZ8635QACa1RABWHFIZ_Mr5YGkZXp22YXUrHE',
             },
         };
 
