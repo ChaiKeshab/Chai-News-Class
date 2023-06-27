@@ -46,26 +46,19 @@
   margin: 0;
   padding: 0;
 }
+.navbar nav div.line-break {
+  padding: 8px 16px;
+}
+.navbar nav div.line-break div {
+  margin: 0;
+  border-right: 1px solid var(--content-break);
+  height: 19px;
+}
 .navbar nav ul li {
-  margin-left: 45px;
+  margin: 2px 15.5px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}
-.navbar nav ul li a.resume {
-  border: 2px solid;
-  padding: 10px;
-  border-color: var(--primary-color);
-  border-radius: 7px;
-  color: var(--primary-color);
-}
-.navbar nav ul li a.resume:hover {
-  position: relative;
-  bottom: 2px;
-  right: 2px;
-  color: var(--select-color);
-  border-color: var(--select-color);
-  box-shadow: 5px 5px 0px var(--select-color);
 }
 .navbar nav ul li .sun {
   width: 20px;
@@ -75,14 +68,14 @@
   width: 20px;
   display: var(--display);
   position: relative;
-  right: 45px;
+  right: 31px;
 }
 .navbar nav ul li a {
   text-decoration: none;
-  color: var(--text-color);
+  color: var(--text-color2);
 }
 .navbar nav ul li a:hover {
-  color: var(--primary-color);
+  color: var(--text-color);
 }
 
 @media (max-width: 767px) {
@@ -108,7 +101,7 @@
     z-index: var(--z-index);
     opacity: var(--opacity);
   }
-  .navbar .container-navbar nav .primary-nav {
+  .navbar .container-navbar nav ul {
     display: flex;
     flex-direction: column;
     place-content: center;
@@ -123,25 +116,25 @@
     opacity: 0.98;
     transition: left 0.3s;
   }
-  .navbar .container-navbar nav .primary-nav .resume-list {
+  .navbar .container-navbar nav ul .resume-list {
     padding-left: 0;
   }
-  .navbar .container-navbar nav .primary-nav .resume-list a {
+  .navbar .container-navbar nav ul .resume-list a {
     padding-left: 30px;
     padding-right: 30px;
   }
-  .navbar .container-navbar nav .primary-nav li {
+  .navbar .container-navbar nav ul li {
     width: -moz-fit-content;
     width: fit-content;
     margin: 20px 0 20px 0;
     position: relative;
     bottom: 58px;
   }
-  .navbar .container-navbar nav .primary-nav li .moon {
+  .navbar .container-navbar nav ul li .moon {
     bottom: 40px;
     right: 0px;
   }
-  .navbar .container-navbar nav .primary-nav li a:active {
+  .navbar .container-navbar nav ul li a:active {
     color: var(--primary-color);
   }
 }/*# sourceMappingURL=Navbar.css.map */

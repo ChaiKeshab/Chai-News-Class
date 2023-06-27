@@ -1,20 +1,27 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem'
 import zoro from '../Images/zoro.png'
-import exdata from './example.json'
+import exdata from './example2.json'
 import './News.css'
 import axios from 'axios'
 import Loading from './Loading'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 export default class News extends Component {
     static defaultProps = {
+        // getNews: 'search'
+        getNews: 'latest_headlines',
+        topic: "all",
+        qSearch: "*",
+        sort_by: "relevancy",
+        lang: "en"
         //default value
     }
 
-    static propTypes = {
-        //typeOf parsed data
-    }
+    // static propTypes = {
+    //     //typeOf parsed data
+    // }
+
     constructor() {
         super()
         this.state = {
@@ -30,23 +37,46 @@ export default class News extends Component {
     //     this.setState({ articles: parsedData.articles })
     // }
     async componentDidMount() {
+        //countries, topic: 'sport', tech, entertainment, beauty, travel, music, gaming, science, food, business, politics, finance, all, 
+        //for nav q: "cat" "anime"
+        // latest_headlines, search
+        const { getNews, qSearch, topic, relevancy, lang } = this.props;
+        const apiUrl = `https://api.newscatcherapi.com/v2/${getNews}`;
+
+        const params = {
+            page_size: 100,
+            page: '1'
+        };
+
+        if (getNews === 'search') {
+            params.q = qSearch;
+            params.sort_by = relevancy;
+            params.topic = topic;
+        } 
+        else if (getNews === 'latest_headlines') {
+            params.lang = lang;
+            params.topic = topic;
+        }
+
         const options = {
             method: 'GET',
-            url: 'https://api.newscatcherapi.com/v2/search',    // latest_headlines
-            params: { q: 'anime', lang: 'en', sort_by: 'relevancy', page: '1', size: '100' }, //for nav q: "cat" "anime"
-            //countries, topic: 'sport', tech, entertainment, beauty, travel, music, gaming, science, food, business, politics, finance, all, 
+            url: apiUrl,
+            params: params,
             headers: {
-                // 'x-api-key': 'your-api',
+                // 'x-api-key': 'your api',
             },
         };
 
         try {
-            this.setState({isLoading: true})
+            if (this.state.isLoading) {
+                return;
+            }
+            this.setState({ isLoading: true });
             const response = await axios.request(options);
-            this.setState({isLoading: false})
-            this.setState({ articles: response.data.articles });
+            this.setState({ isLoading: false, articles: response.data.articles });
+            console.log(apiUrl)
         } catch (error) {
-            this.setState({isLoading: false})
+            this.setState({ isLoading: false });
             this.setState({ articles: exdata.articles });
             console.error('error');
         }
@@ -57,7 +87,7 @@ export default class News extends Component {
         const { articles } = this.state;
         return (
             <div className="main">
-                {this.state.isLoading && < Loading/>}
+                {this.state.isLoading && < Loading />}
                 <div className="wrap">
                     {articles.length > 0 ? (
                         articles.map(element => (
@@ -71,7 +101,7 @@ export default class News extends Component {
                                 />
                             </div>
                         ))
-                    ) : (<chai></chai>)}
+                    ) : (<div></div>)}
                 </div>
             </div>
         );

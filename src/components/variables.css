@@ -11,11 +11,13 @@
   --content-break-light: #E3E3E3;
   --nav-light: #FFFFFF;
   --text-color-light: black;
+  --text-color2-light: #5F6368;
   --article-color-light: white;
-  --background-color-dark: #292A2D;
+  --background-color-dark: #44474e;
   --content-break-dark: #5E5E5E;
   --nav-dark: #202124;
-  --text-color-dark: #CDC1C6;
+  --text-color-dark: #FFFFDE;
+  --text-color2-dark: #CDC1C6;
   --article-color-dark: #1F1F1F;
 }
 
@@ -23,6 +25,7 @@
   --background-color: var(--background-color-light);
   --nav: var(--nav-light);
   --text-color: var(--text-color-light);
+  --text-color2: var(--text-color2-light);
   --article-color: var(--article-color-light);
   --content-break: var(--content-break-light);
 }
@@ -31,6 +34,7 @@
   --background-color: var(--background-color-dark);
   --nav: var(--nav-dark);
   --text-color: var(--text-color-dark);
+  --text-color2: var(--text-color2-dark);
   --article-color: var(--article-color-dark);
   --content-break: var(--content-break-dark);
 }
@@ -47,8 +51,4 @@
   --left: var(--left-hide);
   --opacity: var(--opacity-hide);
   --z-index: var(--z-index-hide);
-}
-
-.blur {
-  overflow: hidden;
 }/*# sourceMappingURL=variables.css.map */

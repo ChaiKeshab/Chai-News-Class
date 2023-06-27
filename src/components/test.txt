@@ -1,6 +1,5 @@
 Cat
 Anime
-
 Gaming
 Entertainment
 Business
@@ -11,4 +10,89 @@ Beauty
 science
 Food
 
+cat
+anime
+business
+    technology
+entertainment
+    sport 
+gaming
+music
+beauty
+science
+food
+
+
+<li><Link to="/business" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Business</Link></li>
+<li><Link to="/technology" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Technology</Link></li>
+<li><Link to="/entertainment" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Entertainment</Link></li>
+<li><Link to="/sport " onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Sport </Link></li>
+<li><Link to="/gaming" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Gaming</Link></li>
+<li><Link to="/music" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Music</Link></li>
+<li><Link to="/beauty" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Beauty</Link></li>
+<li><Link to="/science" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Science</Link></li>
+<li><Link to="/food" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Food</Link></li>
+
+
+
+ async componentDidMount() {
+        //countries, topic: 'sport', tech, entertainment, beauty, travel, music, gaming, science, food, business, politics, finance, all, 
+        //for nav q: "cat" "anime"
+        // latest_headlines, search
+        if (this.props.getNews === 'search') {
+            const options = {
+                method: 'GET',
+                url: `https://api.newscatcherapi.com/v2/${this.props.getNews}`,
+                params: {
+                    q: `${this.props.search}`,
+                    lang: 'en',
+                    topic: `${this.props.topic}`,
+                    sort_by: `${this.props.relevancy}`,
+                    page_size: 100, page: '1'
+                },
+                headers: {
+                    // 'x-api-key': 'yuWR60YZ8635QACa1RABWHFIZ_Mr5YGkZXp22YXUrHE',
+                    // 'x-api-key': 'NXHxv09LJhtrbwfIE4p97C41uZs2UuB_32Oz0616gsE',
+                },
+            };
+
+            try {
+                if (this.state.isLoading) {
+                    return;
+                }
+                this.setState({ isLoading: true });
+                const response = await axios.request(options);
+                this.setState({ isLoading: false, articles: response.data.articles });
+                console.error('error');
+            } catch (error) {
+                this.setState({ isLoading: false })
+                // this.setState({ articles: exdata.articles });
+                console.error('error');
+            }
+        } else if (this.props.getNews === 'latest_headlines') {
+            const options = {
+                method: 'GET',
+                url: `https://api.newscatcherapi.com/v2/${this.props.getNews}`,
+                params: { lang: 'en', page_size: 100, page: '1' },
+                headers: {
+                    // 'x-api-key': 'yuWR60YZ8635QACa1RABWHFIZ_Mr5YGkZXp22YXUrHE',
+                    // 'x-api-key': 'NXHxv09LJhtrbwfIE4p97C41uZs2UuB_32Oz0616gsE',
+                },
+            };
+
+            try {
+                if (this.state.isLoading) {
+                    return;
+                }
+                this.setState({ isLoading: true });
+                const response = await axios.request(options);
+                this.setState({ isLoading: false, articles: response.data.articles });
+                console.error('error');
+            } catch (error) {
+                this.setState({ isLoading: false })
+                // this.setState({ articles: exdata.articles });
+                console.error('error');
+            }
+        }
+    }
 

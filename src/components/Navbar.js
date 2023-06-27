@@ -13,7 +13,7 @@ export default class Navbar extends Component {
   constructor() {
     super();
     this.state = {
-      mode: false,
+      mode: true,
       theme: 'darkMode',
       blur: '',
       hamBar: false,
@@ -69,20 +69,26 @@ export default class Navbar extends Component {
             <img id="mobile-exit" className={`mobile-menu-exit ${hamBar ? 'show' : 'hide'}`} src={exit} alt="Close Navigation" onClick={() => this.toggleHambar()} />
 
             <ul className={`primary-nav ${hamBar ? 'show' : 'hide'}`}>
-
               <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Home</Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>News</Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Cat</Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Anime</Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Gaming</Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Entertainment</Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Business</Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Technology</Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Sport </Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Music</Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Beauty</Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>science</Link></li>
-              <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Food</Link></li>
+              <li><Link to="/chai" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Chai</Link></li>
+              <li><Link to="/anime" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Anime</Link></li>
+            </ul>
+
+            <div className='line-break'>
+              <div></div>
+            </div>
+
+            <ul className={`secondary-nav ${hamBar ? 'show' : 'hide'}`}>
+
+              <li><Link to="/business" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Business</Link></li>
+              <li><Link to="/technology" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Technology</Link></li>
+              <li><Link to="/entertainment" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Entertainment</Link></li>
+              <li><Link to="/sport " onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Sport </Link></li>
+              <li><Link to="/gaming" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Gaming</Link></li>
+              <li><Link to="/music" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Music</Link></li>
+              <li><Link to="/beauty" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Beauty</Link></li>
+              <li><Link to="/science" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Science</Link></li>
+              <li><Link to="/food" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Food</Link></li>
 
 
               <li><img className={`sun ${mode ? 'show' : 'hide'}`} onClick={() => this.toggleMode()} src={sun} alt="Dark Mode" /></li>
