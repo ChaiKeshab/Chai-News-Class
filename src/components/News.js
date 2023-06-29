@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import InfiniteScroll from "react-infinite-scroll-component";
 import NewsItem from './NewsItem'
 import zoro from '../Images/zoro.png'
+import scrollTop from '../Images/scrollToTop.svg'
 import exdata from './example2.json'
 import './News.css'
 import axios from 'axios'
@@ -25,8 +27,10 @@ export default class News extends Component {
     constructor() {
         super()
         this.state = {
-            articles: [],
+            articlesTotal: [],
             isLoading: false,
+            totalResults: 0,
+            articles: [],
         }
     }
 
@@ -52,18 +56,19 @@ export default class News extends Component {
             params.q = qSearch;
             params.sort_by = relevancy;
             params.topic = topic;
-        } 
+        }
         else if (getNews === 'latest_headlines') {
             params.lang = lang;
             params.topic = topic;
         }
 
-        const options = {
+        const format = {
             method: 'GET',
             url: apiUrl,
             params: params,
             headers: {
-                // 'x-api-key': 'your api',
+                // 'x-api-key': '',
+                // 'x-api-key': '',
             },
         };
 
@@ -72,36 +77,102 @@ export default class News extends Component {
                 return;
             }
             this.setState({ isLoading: true });
-            const response = await axios.request(options);
-            this.setState({ isLoading: false, articles: response.data.articles });
+            const response = await axios.request(format);
+            this.setState({
+                isLoading: false,
+                articlesTotal: response.data.articles,
+                articles: this.state.articlesTotal.slice(0, 20)
+            });
             console.log(apiUrl)
         } catch (error) {
             this.setState({ isLoading: false });
-            this.setState({ articles: exdata.articles });
+            this.setState({
+                articlesTotal: exdata.articles,
+                articles: this.state.articlesTotal.slice(0, 20)
+            });
             console.error('error');
         }
     }
 
+    formattedDate(dateString) {
+        const currentDate = new Date();
+        const inputDate = new Date(dateString);
+        const timeDiff = currentDate.getTime() - inputDate.getTime();
+        const secondsDiff = Math.floor(timeDiff / 1000);
+
+        if (secondsDiff < 60) {
+            return 'Just now';
+        } else if (secondsDiff < 3600) {
+            const minutesDiff = Math.floor(secondsDiff / 60);
+            return `${minutesDiff} minute${minutesDiff === 1 ? '' : 's'} ago`;
+        } else if (secondsDiff < 86400) {
+            const hoursDiff = Math.floor(secondsDiff / 3600);
+            return `${hoursDiff} hour${hoursDiff === 1 ? '' : 's'} ago`;
+        } else {
+            const daysDiff = Math.floor(secondsDiff / 86400);
+            return `${daysDiff} day${daysDiff === 1 ? '' : 's'} ago`;
+        }
+    }
+
+    fetchMoreData = () => {
+        const { articles } = this.state;
+        const { articlesTotal } = this.state;
+
+        this.setState({ articles: articles.concat(articlesTotal.slice(0, 20)) })
+    };
+
+    scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth',
+        });
+    }
 
     render() {
         const { articles } = this.state;
+
+        const currentDate = new Date();
+        const format = { weekday: 'long', month: 'long', day: 'numeric' };
+        const formatDate = currentDate.toLocaleDateString('en-US', format);
+
         return (
             <div className="main">
-                {this.state.isLoading && < Loading />}
+                {/* {this.state.isLoading && < Loading />} */}
+
+                <div className="top-text">
+                    <h2>{this.props.topText}</h2>
+                    <p>{formatDate}</p>
+                </div>
+
                 <div className="wrap">
-                    {articles.length > 0 ? (
-                        articles.map(element => (
-                            <div className="container-news" key={element._id}>
-                                <NewsItem
-                                    title={element.title}
-                                    link={element.link}
-                                    media={element.media ? element.media : zoro}
-                                    postDate={element.published_date}
-                                    summary={`${!element.summary ? '' : element.summary.slice(0, 169)}...`}
-                                />
-                            </div>
-                        ))
-                    ) : (<div></div>)}
+                    <InfiniteScroll
+                        className='infiniteScroll'
+                        dataLength={articles.length}
+                        next={this.fetchMoreData}
+                        hasMore={articles.length !== 100}
+                        loader={<Loading />}
+                    >
+
+                        {articles.length > 0 ? (
+                            articles.map(element => (
+                                <div className="container-news" key={element._id}>
+                                    <NewsItem
+                                        title={element.title}
+                                        link={element.link}
+                                        media={element.media ? element.media : zoro}
+                                        // postDate={element.published_date}  
+                                        postDate={this.formattedDate(element.published_date)}
+                                        rights={element.rights}
+                                        summary={`${!element.summary ? '' : element.summary.slice(0, 169)}...`}
+                                    />
+                                </div>
+                            ))
+                        ) : <div className='no-item'></div>}
+                    </InfiniteScroll>
+                </div>
+                <div className='top' onClick={this.scrollToTop}>
+                    <img src={scrollTop} className='to-top' alt='To Top' />
                 </div>
             </div>
         );

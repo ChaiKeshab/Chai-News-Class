@@ -1,16 +1,16 @@
-Cat
+Chai
 Anime
-Gaming
-Entertainment
 Business
 Technology
-Sport 
+Entertainment
+Sport
+Gaming
 Music
 Beauty
-science
+Science
 Food
 
-cat
+chai
 anime
 business
     technology

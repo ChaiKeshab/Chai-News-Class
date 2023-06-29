@@ -17,6 +17,7 @@ export default class Navbar extends Component {
       theme: 'darkMode',
       blur: '',
       hamBar: false,
+      userSearch: ''
     };
   }
 
@@ -30,7 +31,6 @@ export default class Navbar extends Component {
 
   updateBodyClass() {
     const { theme, blur } = this.state;
-
     document.body.classList.toggle('blur', !!blur);
     document.body.classList.toggle('darkMode', theme === 'darkMode');
     document.body.classList.toggle('lightMode', theme === 'lightMode');
@@ -54,14 +54,18 @@ export default class Navbar extends Component {
     }
   }
 
+  changeHandle = (event) => {
+    this.setState({ userSearch: event.target.value })
+  }
+
   render() {
-    let { hamBar, mode } = this.state
+    let { hamBar, mode, userSearch } = this.state
     return (
       <div className="navbar">
         <div className="container-navbar">
           <div className="logo-container">
-
             <Link to="/" className="logo">{this.props.title}<span>{this.props.spanTitle}</span></Link>
+            <textarea name="" id="" onChange={this.changeHandle} value={userSearch} cols="15" rows="1"></textarea>
           </div>
           <img id="mobile-cta" className={`mobile-menu ${hamBar ? 'hide' : 'show'}`} src={menu} alt="Open Navigation" onClick={() => this.toggleHambar()} />
 
@@ -89,7 +93,6 @@ export default class Navbar extends Component {
               <li><Link to="/beauty" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Beauty</Link></li>
               <li><Link to="/science" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Science</Link></li>
               <li><Link to="/food" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Food</Link></li>
-
 
               <li><img className={`sun ${mode ? 'show' : 'hide'}`} onClick={() => this.toggleMode()} src={sun} alt="Dark Mode" /></li>
               <li><img className={`moon ${mode ? 'hide' : 'show'}`} onClick={() => this.toggleMode()} src={moon} alt="Light Mode" /></li>
