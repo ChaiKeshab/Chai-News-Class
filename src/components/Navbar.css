@@ -26,6 +26,9 @@
   align-items: center;
   margin-left: 20px;
 }
+.navbar .logo-container textarea {
+  display: none;
+}
 .navbar .logo {
   text-decoration: none;
   color: var(--text-color);

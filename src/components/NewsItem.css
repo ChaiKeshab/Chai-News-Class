@@ -9,9 +9,24 @@
   flex-direction: column;
   place-content: end space-between;
 }
-.article-newsItem .postDate {
+.article-newsItem .source-info {
+  display: flex;
+  flex-direction: row;
+  place-content: flex-end space-between;
+}
+.article-newsItem .source-info .postDate {
   color: var(--text-color2);
   margin: 0px 0px 20px 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 12px;
+}
+.article-newsItem .source-info .rights {
+  text-decoration: none;
+  color: var(--text-color);
+  margin: 0px 20px 20px 0px;
+  width: -moz-fit-content;
+  width: fit-content;
   font-size: 12px;
 }
 .article-newsItem .c-one {

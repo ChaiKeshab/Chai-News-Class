@@ -4,7 +4,7 @@ import './NewsItem.css'
 export default class NewsItem extends Component {
 
     render() {
-        let { title, link, media, summary, postDate } = this.props
+        let { title, link, media, summary, postDate, rights } = this.props
         return (
             <article className='article-newsItem'>
                 <div className='c-one'>
@@ -18,7 +18,10 @@ export default class NewsItem extends Component {
                         </a>
                     </div>
                 </div>
-                <p className='postDate'>{postDate}</p>
+                <div className='source-info'>
+                    <p className='postDate'>{postDate}</p>
+                    <a className='rights' href={rights}>{rights}</a>
+                </div>
             </article >
         )
     }
