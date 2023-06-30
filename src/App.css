@@ -9,3 +9,9 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
+
+.search-input{
+  position: fixed;
+  top: 50px;
+  z-index: 999;
+}

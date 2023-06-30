@@ -29,6 +29,7 @@ export default class News extends Component {
         this.state = {
             articlesTotal: [],
             isLoading: false,
+            message: '',
             count: 20,
             articles: [],
         }
@@ -67,8 +68,13 @@ export default class News extends Component {
             url: apiUrl,
             params: params,
             headers: {
+<<<<<<< HEAD
                 // 'x-api-key': 'your-api',
 
+=======
+                // 'x-api-key': 'api',
+                // 'x-api-key': '',
+>>>>>>> 1de8102 (added functionality for serach bar)
             },
         };
 
@@ -81,7 +87,7 @@ export default class News extends Component {
             this.setState({
                 isLoading: false,
                 articlesTotal: response.data.articles,
-                articles: this.state.articlesTotal.slice(0, 20)
+                articles: this.state.articlesTotal.slice(0, 20),
             });
             this.scrollToTop()
 
@@ -96,7 +102,7 @@ export default class News extends Component {
         }
     }
 
-    formattedDate(dateString) {
+    formattedDate = (dateString) => {
         const currentDate = new Date();
         const inputDate = new Date(dateString);
         const timeDiff = currentDate.getTime() - inputDate.getTime();
@@ -118,10 +124,16 @@ export default class News extends Component {
 
     fetchMoreData = () => {
         const { articles, articlesTotal, count } = this.state;
+
+        if (!articlesTotal) {
+            this.setState({ message: 'NOT FOUND' })
+            return;
+        }
+
         this.setState({
             count: count + 20,
             articles: articles.concat(articlesTotal.slice(count, count + 20)),
-        })
+        });
     };
 
     scrollToTop = () => {
@@ -133,7 +145,7 @@ export default class News extends Component {
     }
 
     render() {
-        const { articles } = this.state;
+        const { articles, message } = this.state;
 
         const currentDate = new Date();
         const format = { weekday: 'long', month: 'long', day: 'numeric' };
@@ -154,7 +166,7 @@ export default class News extends Component {
                         dataLength={articles.length}
                         next={this.fetchMoreData}
                         hasMore={articles.length !== 100}
-                        loader={<Loading />}
+                        loader={!message ? <Loading /> : <div className='not-found'>{message}</div>}
                     >
 
                         {articles.length > 0 ? (

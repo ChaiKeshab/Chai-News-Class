@@ -19,6 +19,15 @@
 
     .wrap {
         .infiniteScroll {
+            .not-found {
+                font-size: 50px;
+                color: var(--text-color);
+                font-size: 50px;
+                position: fixed;
+                left: 25vw;
+                top: 25vh;
+            }
+
             background-color: var(--article-color);
             border-radius: 18px;
             padding: 10px;
@@ -37,6 +46,14 @@
 @media (max-width: 1024px) {
     .main {
         margin: 0 5vw;
+
+        .wrap {
+            .infiniteScroll {
+                .not-found {
+                    left: 30vw;
+                }
+            }
+        }
     }
 }
 
@@ -48,6 +65,10 @@
             .infiniteScroll {
                 display: flex;
                 flex-direction: column;
+
+                .not-found {
+                    left: 15vw;
+                }
             }
         }
     }

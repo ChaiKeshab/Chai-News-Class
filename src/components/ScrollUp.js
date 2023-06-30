@@ -39,20 +39,6 @@ export default class ScrollUp extends Component {
         return (
             <div className={`top ${isVisible ? 'hide' : 'show'}`} onClick={this.props.scrollToTop}>
                 <img src={scrollTop} className='to-top' alt='To Top' />
-
-                {/* <div id="container">
-                    <div id="height">
-                        <div>height: {height} - {isVisible ? "show" : "hide"}</div>
-                    </div>
-                    {
-                        isVisible
-                        &&
-                        <div id="hide">
-                            Content hidden when scrolled beyond  200px
-                        </div>
-                    }
-                </div> */}
-
             </div>
         )
     }
