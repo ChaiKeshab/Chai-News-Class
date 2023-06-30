@@ -1,8 +1,10 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 #Sass, it's map
-src/components/*.scss
-src/components/*.map
+src/components/*.css
+src/components/*.css
+src/*.map
+src/*.map
 
 # dependencies
 /node_modules

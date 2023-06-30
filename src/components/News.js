@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import InfiniteScroll from "react-infinite-scroll-component";
 import NewsItem from './NewsItem'
 import zoro from '../Images/zoro.png'
-import scrollTop from '../Images/scrollToTop.svg'
 import exdata from './example2.json'
 import './News.css'
 import axios from 'axios'
 import Loading from './Loading'
+import ScrollUp from './ScrollUp';
 // import PropTypes from 'prop-types'
 
 export default class News extends Component {
@@ -29,7 +29,7 @@ export default class News extends Component {
         this.state = {
             articlesTotal: [],
             isLoading: false,
-            totalResults: 0,
+            count: 20,
             articles: [],
         }
     }
@@ -67,8 +67,8 @@ export default class News extends Component {
             url: apiUrl,
             params: params,
             headers: {
-                // 'x-api-key': '',
-                // 'x-api-key': '',
+                // 'x-api-key': 'yuWR60YZ8635QACa1RABWHFIZ_Mr5YGkZXp22YXUrHE',
+                // 'x-api-key': 'NXHxv09LJhtrbwfIE4p97C41uZs2UuB_32Oz0616gsE',
             },
         };
 
@@ -83,13 +83,15 @@ export default class News extends Component {
                 articlesTotal: response.data.articles,
                 articles: this.state.articlesTotal.slice(0, 20)
             });
-            console.log(apiUrl)
+            this.scrollToTop()
+
         } catch (error) {
             this.setState({ isLoading: false });
             this.setState({
                 articlesTotal: exdata.articles,
-                articles: this.state.articlesTotal.slice(0, 20)
+                articles: this.state.articlesTotal.slice(0, 20),
             });
+            this.scrollToTop()
             console.error('error');
         }
     }
@@ -115,15 +117,16 @@ export default class News extends Component {
     }
 
     fetchMoreData = () => {
-        const { articles } = this.state;
-        const { articlesTotal } = this.state;
-
-        this.setState({ articles: articles.concat(articlesTotal.slice(0, 20)) })
+        const { articles, articlesTotal, count } = this.state;
+        this.setState({
+            count: count + 20,
+            articles: articles.concat(articlesTotal.slice(count, count + 20)),
+        })
     };
 
     scrollToTop = () => {
         window.scrollTo({
-            top: 0,
+            top: 10,
             left: 0,
             behavior: 'smooth',
         });
@@ -155,8 +158,8 @@ export default class News extends Component {
                     >
 
                         {articles.length > 0 ? (
-                            articles.map(element => (
-                                <div className="container-news" key={element._id}>
+                            articles.map((element, index) => (
+                                <div className="container-news" key={`${element._id}${index}`}>
                                     <NewsItem
                                         title={element.title}
                                         link={element.link}
@@ -171,9 +174,7 @@ export default class News extends Component {
                         ) : <div className='no-item'></div>}
                     </InfiniteScroll>
                 </div>
-                <div className='top' onClick={this.scrollToTop}>
-                    <img src={scrollTop} className='to-top' alt='To Top' />
-                </div>
+                <ScrollUp scrollToTop={this.scrollToTop} />
             </div>
         );
     }
