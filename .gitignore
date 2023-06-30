@@ -2,9 +2,7 @@
 
 #Sass, it's map
 src/components/*.css
-src/components/*.css
-src/*.map
-src/*.map
+src/components/*.map
 
 # dependencies
 /node_modules

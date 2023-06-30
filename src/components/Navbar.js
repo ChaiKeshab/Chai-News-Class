@@ -5,6 +5,7 @@ import menu from '../Images/menu.svg';
 import exit from '../Images/exit.svg';
 import moon from '../Images/moon.svg';
 import sun from '../Images/sun.svg';
+// import SearchBar from './SearchBar';
 import './Navbar.css'
 // impt
 
@@ -17,7 +18,6 @@ export default class Navbar extends Component {
       theme: 'darkMode',
       blur: '',
       hamBar: false,
-      userSearch: ''
     };
   }
 
@@ -54,18 +54,13 @@ export default class Navbar extends Component {
     }
   }
 
-  changeHandle = (event) => {
-    this.setState({ userSearch: event.target.value })
-  }
-
   render() {
-    let { hamBar, mode, userSearch } = this.state
+    let { hamBar, mode } = this.state
     return (
       <div className="navbar">
         <div className="container-navbar">
           <div className="logo-container">
             <Link to="/" className="logo">{this.props.title}<span>{this.props.spanTitle}</span></Link>
-            <textarea name="" id="" onChange={this.changeHandle} value={userSearch} cols="15" rows="1"></textarea>
           </div>
           <img id="mobile-cta" className={`mobile-menu ${hamBar ? 'hide' : 'show'}`} src={menu} alt="Open Navigation" onClick={() => this.toggleHambar()} />
 
@@ -98,6 +93,7 @@ export default class Navbar extends Component {
               <li><img className={`moon ${mode ? 'hide' : 'show'}`} onClick={() => this.toggleMode()} src={moon} alt="Light Mode" /></li>
             </ul>
           </nav>
+          {/* <SearchBar /> */}
         </div>
       </div>
     )

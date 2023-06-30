@@ -34,6 +34,7 @@
   }
 
   .logo {
+    display: flex;
     text-decoration: none;
     color: var(--text-color);
     font-size: 32px;
@@ -41,6 +42,7 @@
     // align-items: center;
 
     span {
+      margin-left: 9px;
       color: var(--primary-color);
     }
   }
