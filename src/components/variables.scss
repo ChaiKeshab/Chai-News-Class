@@ -5,15 +5,17 @@
     // --select-color-dark: #00FFFF;
 
     --display-show: block;
-    --left-show: 25vw; //75% show
-    --right-show: calc(30vw - 100px); //75% show
+    --left-show: 25vw;
+    --right-show: calc(30vw - 100px);
+    --right-show2: 70px;
     --bottom-show: 50px;
     --opacity-show: 1;
     --z-index-show: 900;
 
     --display-hide: none;
-    --left-hide: 100vw; //100% disappear
-    --right-hide: -80vw; //100% disappear
+    --left-hide: 100vw;
+    --right-hide: -90vw;
+    --right-hide2: -40vw;
     --bottom-hide: -10vw;
     --opacity-hide: 0;
     --z-index-hide: 200;
@@ -68,6 +70,7 @@
     --bottom: var(--bottom-show);
     --opacity: var(--opacity-show);
     --z-index: var(--z-index-show);
+    --right2: var(--right-show2);
 }
 
 .hide {
@@ -77,6 +80,7 @@
     --bottom: var(--bottom-hide);
     --opacity: var(--opacity-hide);
     --z-index: var(--z-index-hide);
+    --right2: var(--right-hide2);
 }
 
 // .blur {

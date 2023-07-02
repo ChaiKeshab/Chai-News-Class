@@ -66,7 +66,7 @@ body {
     display: var(--display);
     position: fixed;
     top: 100px;
-    right: 52px;
+    right: 15px;
     width: 40px;
     height: 40px;
     cursor: pointer;
@@ -96,6 +96,15 @@ body {
         
         img{
             width: 25px;
+        }
+    }
+}
+
+@media (max-width: 280px) {
+    .search-button {
+        top: 19px;
+        img{
+            width: 20px;
         }
     }
 }
