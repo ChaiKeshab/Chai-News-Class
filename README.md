@@ -1,6 +1,7 @@
 # CHAI News
 
 CHAI News is a news app that provides the latest news articles on various topics. Stay updated with the latest news from around the world!
+Designed using Class component (cuz i was learning class component)
 
 ## Features
 
