@@ -3,7 +3,8 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import './App.css';
 import Navbar from './components/Navbar';
 import News from './components/News';
-// import SearchBar from './components/SearchBar';
+import searchIcon from './Images/search-icon.svg';
+import slideLeft from './Images/slideLeft.svg';
 
 //rcc
 export default class App extends Component {
@@ -13,6 +14,7 @@ export default class App extends Component {
     this.state = {
       userSearch: '',
       userSearchData: '',
+      searchBar: false,
     }
   }
 
@@ -28,18 +30,27 @@ export default class App extends Component {
     document.removeEventListener('keydown', this.handleKeyDown);
   }
 
+  toggleSearchbar = () => {
+    if (this.state.searchBar === false) {
+      this.setState({ searchBar: true });
+    } else if (this.state.searchBar === true) {
+      this.setState({ searchBar: false });
+    }
+  }
+
   handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' || event.type === 'click') {
       event.preventDefault();
       this.setState({ userSearchData: this.state.userSearch }, () => { // for avoiding double Enter
         this.linkRef.current.click();
       });
+      this.setState({ searchBar: false });
     }
   };
 
+
   render() {
-    const { userSearch, userSearchData } = this.state
-    // console.log(userSearchData)
+    const { userSearch, userSearchData, searchBar } = this.state
 
     return (
       <BrowserRouter>
@@ -65,14 +76,25 @@ export default class App extends Component {
           )}
         </Routes>
 
-        <div className='search-input'>
-          <input type="text" value={userSearch} onChange={this.handleInputChange} onKeyDown={this.handleKeyPress} />
-          <Link to={`/${userSearchData}`} ref={this.linkRef} className={``}>Search</Link>
-          {/* How to pass props in reverse way 
-              Error: in search mode, first result is shown but second result causes error
-          */}
+        <div className={`search-input ${searchBar ? 'show' : 'hide'}`}>
+
+          <img className='search-icon' onClick={this.handleKeyDown} src={searchIcon} alt="Search" />
+          <input type="text" placeholder="Search.." value={userSearch} onChange={this.handleInputChange} />
+          <img className='search-close' onClick={this.toggleSearchbar} src={slideLeft} alt="Close" />
+          <Link to={`/${userSearchData}`} ref={this.linkRef} ></Link>
+
+        </div>
+
+        <div className={`search-button ${searchBar ? 'hide' : 'show'}`}>
+          <img src={searchIcon} onClick={this.toggleSearchbar} alt="Search bar" />
         </div>
       </BrowserRouter>
     )
   }
 }
+
+
+
+// {/* How to pass props in reverse way 
+//     Error: in search mode, first result is shown but second result causes error
+// */}

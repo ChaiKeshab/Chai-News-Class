@@ -29,14 +29,14 @@ export default class Navbar extends Component {
     this.updateBodyClass();
   }
 
-  updateBodyClass() {
-    const { theme, blur } = this.state;
-    document.body.classList.toggle('blur', !!blur);
+  updateBodyClass = () => {
+    const { theme,  } = this.state;
+    // document.body.classList.toggle('blur', !!blur);
     document.body.classList.toggle('darkMode', theme === 'darkMode');
     document.body.classList.toggle('lightMode', theme === 'lightMode');
   }
 
-  toggleMode() {
+  toggleMode = () => {
     if (this.state.theme === 'darkMode') {
       this.setState({ theme: 'lightMode', mode: false });
     } else if (this.state.theme === 'lightMode') {
@@ -44,15 +44,20 @@ export default class Navbar extends Component {
     }
   }
 
-  toggleHambar() {
+  toggleHambar = () => {
     if (window.matchMedia('(max-width: 1260px)').matches) {
-      if (this.state.blur === '') {
-        this.setState({ hamBar: true, blur: 'blur' });
-      } else if (this.state.blur === 'blur') {
-        this.setState({ hamBar: false, blur: '' });
+      if (this.state.hamBar === false) {
+        this.setState({ hamBar: true });
+      } else if (this.state.hamBar === true) {
+        this.setState({ hamBar: false });
       }
     }
   }
+  
+  closeMenu = () => {
+    this.setState({ hamBar: false });
+  }
+
 
   render() {
     let { hamBar, mode } = this.state
@@ -70,9 +75,9 @@ export default class Navbar extends Component {
             <div className={`nav-div ${hamBar ? 'show' : 'hide'}`}>
 
               <ul className={`nav-one`}>
-                <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Home</Link></li>
-                <li><Link to="/chai" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Chai</Link></li>
-                <li><Link to="/anime" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Anime</Link></li>
+                <li><Link to="/" onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Home</Link></li>
+                <li><Link to="/chai" onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Chai</Link></li>
+                <li><Link to="/anime" onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Anime</Link></li>
               </ul>
 
               <div className='line-break'>
@@ -80,21 +85,21 @@ export default class Navbar extends Component {
               </div>
 
               <ul className={`nav-two`}>
-                <li><Link to="/business" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Business</Link></li>
-                <li><Link to="/technology" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Technology</Link></li>
-                <li><Link to="/entertainment" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Entertainment</Link></li>
+                <li><Link to="/business" onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Business</Link></li>
+                <li><Link to="/technology" onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Technology</Link></li>
+                <li><Link to="/entertainment" onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Entertainment</Link></li>
               </ul>
 
               <ul className={`nav-three`}>
-                <li><Link to="/sport " onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Sport </Link></li>
-                <li><Link to="/gaming" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Gaming</Link></li>
-                <li><Link to="/music" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Music</Link></li>
+                <li><Link to="/sport " onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Sport </Link></li>
+                <li><Link to="/gaming" onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Gaming</Link></li>
+                <li><Link to="/music" onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Music</Link></li>
               </ul>
 
               <ul className={`nav-four`}>
-                <li><Link to="/beauty" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Beauty</Link></li>
-                <li><Link to="/science" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Science</Link></li>
-                <li><Link to="/food" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Food</Link></li>
+                <li><Link to="/beauty" onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Beauty</Link></li>
+                <li><Link to="/science" onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Science</Link></li>
+                <li><Link to="/food" onClick={() => this.closeMenu()} className={`${hamBar ? 'hide' : 'show'}`}>Food</Link></li>
               </ul>
             </div>
 

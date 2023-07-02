@@ -45,13 +45,12 @@
 
   nav {
     display: flex;
-    // flex-grow: 1;
-    // justify-content: flex-end;
 
     .ellipsis-container {
       display: flex;
       place-items: center;
-      margin: 8px 15px;
+      margin: 4px 8px;
+      padding: 4px 7px;
 
       .ellipsis {
         margin: 0;
@@ -74,7 +73,6 @@
         width: 20px;
         display: var(--display);
         position: relative;
-        // right: 20px;
       }
     }
 
@@ -127,6 +125,7 @@
     .container-navbar {
       nav {
         .ellipsis-container {
+          cursor: pointer;
           .ellipsis {
             display: block;
           }
@@ -231,7 +230,7 @@
             width: 129px;
             box-shadow: 0px 10px 10px 0px var(--shadow);
           }
-
+          
           .nav-four {
             top: 285px;
             width: 129px;
@@ -245,11 +244,11 @@
 @media (max-width: 767px) {
   .navbar {
     position: fixed;
-
+    
     .container-navbar {
       .logo-container {
         margin: 0;
-
+        
         .logo {
           font-size: 25px;
         }
@@ -263,20 +262,20 @@
         z-index: var(--z-index);
         opacity: var(--opacity);
       }
-
+      
       nav {
         flex-direction: column;
-
+        
         .sun-moon {
           position: relative;
           right: 69px;
           margin-top: 5px;
         }
-
+        
         .ellipsis-container {
           display: none;
         }
-
+        
         .mobile-menu-exit {
           display: block;
           position: fixed;
@@ -285,23 +284,23 @@
           z-index: var(--z-index);
           opacity: var(--opacity);
         }
-
+        
         .nav-div {
           height: calc(100vh - 52px);
           width: 75vw;
           position: fixed;
           z-index: 1;
           top: 52px;
-          // right: 0px;
           left: var(--left);
           background-color: var(--nav);
           overflow-x: hidden;
           overflow-y: auto;
           transition: 0.5s;
           padding: 0px;
-
+          box-shadow: 0px 10px 10px 0px var(--shadow);
+          
           display: block; //Important
-
+          
           .nav-one,
           .nav-two,
           .nav-three,

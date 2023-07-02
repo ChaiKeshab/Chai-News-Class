@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import InfiniteScroll from "react-infinite-scroll-component";
 import NewsItem from './NewsItem'
 import zoro from '../Images/zoro.png'
-import exdata from './example2.json'
+// import exdata from './example2.json'
 import './News.css'
 import axios from 'axios'
 import Loading from './Loading'
@@ -68,8 +68,7 @@ export default class News extends Component {
             url: apiUrl,
             params: params,
             headers: {
-                // 'x-api-key': 'yuWR60YZ8635QACa1RABWHFIZ_Mr5YGkZXp22YXUrHE',
-                // 'x-api-key': 'NXHxv09LJhtrbwfIE4p97C41uZs2UuB_32Oz0616gsE',
+                // 'x-api-key': 'your News catcher api',
             },
         };
 
@@ -88,11 +87,11 @@ export default class News extends Component {
 
         } catch (error) {
             this.setState({ isLoading: false });
-            this.setState({
-                articlesTotal: exdata.articles,
-                articles: this.state.articlesTotal.slice(0, 20),
-            });
-            this.scrollToTop()
+            // this.setState({
+            //     articlesTotal: exdata.articles,
+            //     articles: this.state.articlesTotal.slice(0, 20),
+            // });
+            // this.scrollToTop()
             console.error('error');
         }
     }

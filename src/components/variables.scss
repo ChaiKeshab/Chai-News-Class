@@ -6,14 +6,14 @@
 
     --display-show: block;
     --left-show: 25vw; //75% show
-    --right-show: 60px; //75% show
+    --right-show: calc(30vw - 100px); //75% show
     --bottom-show: 50px;
     --opacity-show: 1;
     --z-index-show: 900;
 
     --display-hide: none;
     --left-hide: 100vw; //100% disappear
-    --right-hide: -20vw; //100% disappear
+    --right-hide: -80vw; //100% disappear
     --bottom-hide: -10vw;
     --opacity-hide: 0;
     --z-index-hide: 200;
@@ -79,6 +79,6 @@
     --z-index: var(--z-index-hide);
 }
 
-.blur {
-    position: absolute;
-}
+// .blur {
+//     position: absolute;
+// }
