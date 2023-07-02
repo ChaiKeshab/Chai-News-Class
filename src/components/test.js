@@ -1,162 +1,100 @@
-// import React, { useEffect, useState } from 'react';
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import menu from '../Images/menu.svg';
-import exit from '../Images/exit.svg';
-import moon from '../Images/moon.svg';
-import sun from '../Images/sun.svg';
-import ellipsis from '../Images/ellipsis.svg';
-import './Navbar.css'
-// impt
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import './App.css';
+import Navbar from './components/Navbar';
+import News from './components/News';
+import searchIcon from './Images/search-icon.svg';
 
-// rcc (react-class-component)
-export default class Navbar extends Component {
+//rcc
+export default class App extends Component {
   constructor() {
     super();
+    this.linkRef = React.createRef();
     this.state = {
-      mode: true,
-      theme: 'darkMode',
-      blur: '',
-      hamBar: false,
-    };
+      userSearch: '',
+      userSearchData: '',
+      searchBar: false,
+    }
   }
+
+  toggleSearchbar() {
+    if (this.state.searchBar === false) {
+      this.setState({ searchBar: true });
+    } else if (this.state.searchBar === true) {
+      this.setState({ searchBar: false });
+    }
+  }
+
+  handleInputChange = (event) => {
+    this.setState({ userSearch: event.target.value });
+  };
 
   componentDidMount() {
-    this.updateBodyClass();
+    document.addEventListener('keydown', this.handleKeyDown);
   }
 
-  componentDidUpdate() {
-    this.updateBodyClass();
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown);
   }
 
-  updateBodyClass() {
-    const { theme, blur } = this.state;
-    document.body.classList.toggle('blur', !!blur);
-    document.body.classList.toggle('darkMode', theme === 'darkMode');
-    document.body.classList.toggle('lightMode', theme === 'lightMode');
-  }
-
-  toggleMode() {
-    if (this.state.theme === 'darkMode') {
-      this.setState({ theme: 'lightMode', mode: false });
-    } else if (this.state.theme === 'lightMode') {
-      this.setState({ theme: 'darkMode', mode: true });
+  handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      this.setState({ userSearchData: this.state.userSearch }, () => { // for avoiding double Enter
+        this.linkRef.current.click();
+      });
     }
-  }
-
-  toggleHambar() {
-    if (window.matchMedia('(max-width: 1260px)').matches) {
-      if (this.state.blur === '') {
-        this.setState({ hamBar: true, blur: 'blur' });
-      } else if (this.state.blur === 'blur') {
-        this.setState({ hamBar: false, blur: '' });
-      }
-    }
-  }
+  };
 
   render() {
-    let { hamBar, mode } = this.state
+    const { userSearch, userSearchData } = this.state
+
     return (
-      <div className="navbar">
-        <div className="container-navbar">
-          <div className="logo-container">
-            <Link to="/" className="logo">{this.props.title}<span>{this.props.spanTitle}</span></Link>
-          </div>
-          <img id="mobile-cta" className={`mobile-menu ${hamBar ? 'hide' : 'show'}`} src={menu} alt="Open Navigation" onClick={() => this.toggleHambar()} />
+      <BrowserRouter>
+        <Navbar title='CHAI ' spanTitle='News' />
 
-          <nav>
-            <img id="mobile-exit" className={`mobile-menu-exit ${hamBar ? 'show' : 'hide'}`} src={exit} alt="Close Navigation" onClick={() => this.toggleHambar()} />
+        <Routes>
 
-            <div className={`nav-div ${hamBar ? 'show' : 'hide'}`}>
-              
-              <ul className={`nav-one ${hamBar ? 'show' : 'hide'}`}>
-                <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Home</Link></li>
-                <li><Link to="/chai" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Chai</Link></li>
-                <li><Link to="/anime" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Anime</Link></li>
-              </ul>
+          <Route exact path='/' element={<News getNews="latest_headlines" topic={null} lang="en" key="/ " topText="Latest Headlines" />} />
+          <Route exact path='/chai' element={<News getNews="search" qSearch="tea OR coffee" topic={null} key="tea" topText="Tea/Coffee" />} />
+          <Route exact path='/anime' element={<News getNews="search" qSearch="anime" topic={null} key="anime" topText="Anime" />} />
+          <Route exact path='/business' element={<News getNews="latest_headlines" topic="business" key="business" topText="Business" />} />
+          <Route exact path='/technology' element={<News getNews="latest_headlines" topic="tech" key="tech" topText="Technology" />} />
+          <Route exact path='/entertainment' element={<News getNews="latest_headlines" topic="entertainment" key="entertainment" topText="Entertainment" />} />
+          <Route exact path='/sport' element={<News getNews="latest_headlines" topic="sport" key="sport" topText="Sport" />} />
+          <Route exact path='/gaming' element={<News getNews="latest_headlines" topic="gaming" key="gaming" topText="Gaming" />} />
+          <Route exact path='/music' element={<News getNews="latest_headlines" topic="music" key="music" topText="Music" />} />
+          <Route exact path='/beauty' element={<News getNews="latest_headlines" topic="beauty" key="beauty" topText="Beauty" />} />
+          <Route exact path='/science' element={<News getNews="latest_headlines" topic="science" key="science" topText="Science" />} />
+          <Route exact path='/food' element={<News getNews="latest_headlines" topic="food" key="food" topText="Food" />} />
 
-              <div className='line-break'>
-                <div></div>
-              </div>
+          {userSearchData && (
+            <Route exact path={`/${userSearchData}`} element={<News getNews="search" qSearch={`${userSearchData}`} topic={null} key={`${userSearchData}`} topText={`Results for: ${userSearchData}`} />} />
+          )}
+        </Routes>
 
-              <ul className={`nav-two ${hamBar ? 'show' : 'hide'}`}>
-                <li><Link to="/business" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Business</Link></li>
-                <li><Link to="/technology" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Technology</Link></li>
-                <li><Link to="/entertainment" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Entertainment</Link></li>
-              </ul>
-
-              <ul className={`nav-three ${hamBar ? 'show' : 'hide'}`}>
-                <li><Link to="/sport " onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Sport </Link></li>
-                <li><Link to="/gaming" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Gaming</Link></li>
-                <li><Link to="/music" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Music</Link></li>
-              </ul>
-
-              <ul className={`nav-four ${hamBar ? 'show' : 'hide'}`}>
-                <li><Link to="/beauty" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Beauty</Link></li>
-                <li><Link to="/science" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Science</Link></li>
-                <li><Link to="/food" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Food</Link></li>
-              </ul>
-            </div>
-
-            <div className='ellipsis-container'>
-              <img className={`ellipsis ${hamBar ? 'hide' : 'show'}`} src={ellipsis} alt="Open Navigation" onClick={() => this.toggleHambar()} />
-            </div>
-
-            <div className='sun-moon'>
-              <img className={`sun ${mode ? 'show' : 'hide'}`} onClick={() => this.toggleMode()} src={sun} alt="Dark Mode" />
-              <img className={`moon ${mode ? 'hide' : 'show'}`} onClick={() => this.toggleMode()} src={moon} alt="Light Mode" />
-            </div>
-          </nav>
+        <div className='search-input'>
+          <input type="text" value={userSearch} onChange={this.handleInputChange} onKeyDown={this.handleKeyPress} />
+          <Link to={`/${userSearchData}`} ref={this.linkRef} ><img src={searchIcon} alt="Search" /></Link>
         </div>
-      </div>
+      </BrowserRouter>
     )
   }
 }
 
 
 
-// export default function Navbar(this.props) {
-//   //------------------------------------darkMode------------------------------------
-//   const [mode, setMode] = useState('false')
-//   const [theme, setTheme] = useState('darkMode')
-//   const [blur, setBlur] = useState('')
+// {/* How to pass props in reverse way 
+//     Error: in search mode, first result is shown but second result causes error
+// */}
 
-//   function toggleMode() {
-//     if (theme === 'darkMode') {
-//       setTheme('lightMode')
-//       setMode(false)
 
-//     }
-//     if (theme === 'lightMode') {
-//       setTheme('darkMode')
-//       setMode(true)
+// toggleHambar() {
+//   if (window.matchMedia('(max-width: 767px)').matches) {
+//     if (this.state.blur === '') {
+//       this.setState({ hamBar: true, blur: 'blur' });
+//     } else if (this.state.blur === 'blur') {
+//       this.setState({ hamBar: false, blur: '' });
 //     }
 //   }
-
-  // useEffect(() => {
-  //   document.body.classList.toggle('blur', !!blur);
-  //   document.body.classList.toggle('darkMode', theme === 'darkMode');
-  //   document.body.classList.toggle('lightMode', theme === 'lightMode');
-  // }, [theme, blur]);
-
-//   //------------------------------------menuToggle------------------------------------
-//   const [hamBar, setHamBar] = useState(false)
-//   function toggleHambar() {
-
-//     if (window.matchMedia('(max-width: 767px)').matches) {
-//       if (blur === '') {
-//         setHamBar(true)
-//         setBlur('blur')
-//       }
-
-//       if (blur === 'blur') {
-//         setHamBar(false)
-//         setBlur('')
-//       }
-//     }
-//   }
-
-//   return (
-//     <div>Navbar</div>
-//   )
 // }
