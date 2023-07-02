@@ -30,7 +30,7 @@ Make sure you have Node.js and npm installed on your machine.
 
 - React.js: JavaScript library for building user interfaces.
 - Axios: Promise-based HTTP client for making API requests.
-- CSS: Styling the app for an enhanced user experience.
+- SCSS: Styling the app for an enhanced user experience.
 
 ## Contributing
 
