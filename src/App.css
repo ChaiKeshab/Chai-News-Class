@@ -1,17 +1,14 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap'); */
 @import './components/variables.css';
-@import url('https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 body {
   margin: 80px 0 0 0;
-  /* font-family: 'Open Sans', sans-serif; */
-  font-family: 'PT Sans', sans-serif;
+  font-family: "PT Sans", sans-serif;
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
-.search-input{
+.search-input {
   position: fixed;
   top: 50px;
   z-index: 999;
-}
+}/*# sourceMappingURL=App.css.map */

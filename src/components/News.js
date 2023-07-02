@@ -68,8 +68,8 @@ export default class News extends Component {
             url: apiUrl,
             params: params,
             headers: {
-                // 'x-api-key': 'api',
-                // 'x-api-key': '',
+                // 'x-api-key': 'yuWR60YZ8635QACa1RABWHFIZ_Mr5YGkZXp22YXUrHE',
+                // 'x-api-key': 'NXHxv09LJhtrbwfIE4p97C41uZs2UuB_32Oz0616gsE',
             },
         };
 

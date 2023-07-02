@@ -61,7 +61,7 @@ export default class App extends Component {
           <Route exact path='/food' element={<News getNews="latest_headlines" topic="food" key="food" topText="Food" />} />
 
           {userSearchData && (
-            <Route exact path={`/${userSearchData}`} element={<News getNews="search" qSearch={`${userSearchData}`} topic={null} key={`${userSearchData}`} topText={`${userSearchData}`} />} />
+            <Route exact path={`/${userSearchData}`} element={<News getNews="search" qSearch={`${userSearchData}`} topic={null} key={`${userSearchData}`} topText={`Results for: ${userSearchData}`} />} />
           )}
         </Routes>
 
