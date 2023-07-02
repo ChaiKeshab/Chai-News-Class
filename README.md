@@ -1,7 +1,10 @@
 # CHAI News
 
 CHAI News is a news app that provides the latest news articles on various topics. Stay updated with the latest news from around the world!
+
 Designed using Class component (cuz i was learning class component)
+
+BTW, I have purposely set the article limit to 100 cuz more than that requires going to next page, which requires another api call?. Was trying to save my remaining api calls but now that i think about it... It was unnecessary. Anyway, removing the limiter just needs some tinkering with the Infinite-scroll which is currently being used to limit the article to 20 per page render, Scroll to bottom to get 20 more until end of page 
 
 ## Features
 
