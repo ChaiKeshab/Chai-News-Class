@@ -68,8 +68,8 @@ export default class Navbar extends Component {
             <img id="mobile-exit" className={`mobile-menu-exit ${hamBar ? 'show' : 'hide'}`} src={exit} alt="Close Navigation" onClick={() => this.toggleHambar()} />
 
             <div className={`nav-div ${hamBar ? 'show' : 'hide'}`}>
-
-              <ul className={`nav-one`}>
+              
+              <ul className={`nav-one ${hamBar ? 'show' : 'hide'}`}>
                 <li><Link to="/" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Home</Link></li>
                 <li><Link to="/chai" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Chai</Link></li>
                 <li><Link to="/anime" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Anime</Link></li>
@@ -79,19 +79,19 @@ export default class Navbar extends Component {
                 <div></div>
               </div>
 
-              <ul className={`nav-two`}>
+              <ul className={`nav-two ${hamBar ? 'show' : 'hide'}`}>
                 <li><Link to="/business" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Business</Link></li>
                 <li><Link to="/technology" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Technology</Link></li>
                 <li><Link to="/entertainment" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Entertainment</Link></li>
               </ul>
 
-              <ul className={`nav-three`}>
+              <ul className={`nav-three ${hamBar ? 'show' : 'hide'}`}>
                 <li><Link to="/sport " onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Sport </Link></li>
                 <li><Link to="/gaming" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Gaming</Link></li>
                 <li><Link to="/music" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Music</Link></li>
               </ul>
 
-              <ul className={`nav-four`}>
+              <ul className={`nav-four ${hamBar ? 'show' : 'hide'}`}>
                 <li><Link to="/beauty" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Beauty</Link></li>
                 <li><Link to="/science" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Science</Link></li>
                 <li><Link to="/food" onClick={() => this.toggleHambar()} className={`${hamBar ? 'hide' : 'show'}`}>Food</Link></li>

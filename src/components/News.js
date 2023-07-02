@@ -68,13 +68,7 @@ export default class News extends Component {
             url: apiUrl,
             params: params,
             headers: {
-<<<<<<< HEAD
                 // 'x-api-key': 'your-api',
-
-=======
-                // 'x-api-key': 'api',
-                // 'x-api-key': '',
->>>>>>> 1de8102 (added functionality for serach bar)
             },
         };
 

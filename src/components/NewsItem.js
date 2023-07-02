@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './NewsItem.css'
+import zoro from '../Images/zoro.png'
 
 export default class NewsItem extends Component {
 
@@ -11,7 +12,7 @@ export default class NewsItem extends Component {
                     <div className='c-two'>
                         <a className='link-cta' href={link} target='_blank' rel='noreferrer'>
                             <div className='c-three'>
-                                <img className='thumbnail' src={media} alt='getBetterInternet' />
+                                <img className='thumbnail' src={media} onError={(e) => e.target.src = zoro} alt="Couldn't load" />
                                 <h1>{title}</h1>
                                 <p className='para'>{summary}</p>
                             </div>
