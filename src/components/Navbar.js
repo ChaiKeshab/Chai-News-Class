@@ -45,7 +45,7 @@ export default class Navbar extends Component {
   }
 
   toggleHambar = () => {
-    if (window.matchMedia('(max-width: 1260px)').matches) {
+    if (window.matchMedia('(max-width: 1370px)').matches) {
       if (this.state.hamBar === false) {
         this.setState({ hamBar: true });
       } else if (this.state.hamBar === true) {

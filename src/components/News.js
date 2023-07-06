@@ -11,13 +11,11 @@ import ScrollUp from './ScrollUp';
 
 export default class News extends Component {
     static defaultProps = {
-        // getNews: 'search'
         getNews: 'latest_headlines',
         topic: "all",
         qSearch: "*",
         sort_by: "relevancy",
         lang: "en"
-        //default value
     }
 
     // static propTypes = {
@@ -68,7 +66,7 @@ export default class News extends Component {
             url: apiUrl,
             params: params,
             headers: {
-                // 'x-api-key': 'your News catcher api',
+                // 'x-api-key': 'your-api',
             },
         };
 
