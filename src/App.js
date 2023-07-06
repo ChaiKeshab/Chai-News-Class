@@ -41,7 +41,7 @@ export default class App extends Component {
   handleKeyDown = (event) => {
     if (event.key === 'Enter' || event.type === 'click') {
       event.preventDefault();
-      this.setState({ userSearchData: this.state.userSearch }, () => { // for avoiding double Enter
+      this.setState({ userSearchData: this.state.userSearch.trim() }, () => { // for avoiding double Enter
         this.linkRef.current.click();
       });
       this.setState({ searchBar: false });
