@@ -2,9 +2,9 @@
 
 CHAI News is a news app that provides the latest news articles on various topics. Stay updated with the latest news from around the world!
 
-Designed using Class component (cuz i was learning class component)
+Designed using Class component
 
-BTW, I have purposely set the article limit to 100 cuz more than that requires going to next page, which requires another api call?. Was trying to save my remaining api calls but now that i think about it... It was unnecessary. Anyway, removing the limiter just needs some tinkering with the Infinite-scroll which is currently being used to limit the article to 20 per page render, Scroll to bottom to get 20 more until end of page 
+Check out https://github.com/ChaiKeshab/Chai-News-v2-FunctionBased for updated version coded with function based components
 
 ## Features
 
@@ -31,17 +31,3 @@ Make sure you have Node.js and npm installed on your machine.
 - React.js: JavaScript library for building user interfaces.
 - Axios: Promise-based HTTP client for making API requests.
 - SCSS: Styling the app for an enhanced user experience.
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute to the CHAI News app, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature: `git checkout -b feature-name`
-3. Make your changes and commit them: `git commit -m 'Add some feature'`
-4. Push the branch: `git push origin feature-name`
-5. Submit a pull request.
-
-## License
-
-The CHAI News app is open-source and available under the [MIT License](LICENSE).
