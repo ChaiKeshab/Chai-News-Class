@@ -66,7 +66,7 @@ export default class News extends Component {
             url: apiUrl,
             params: params,
             headers: {
-                // 'x-api-key': 'your-api',
+                'x-api-key': process.env.REACT_APP_API,
             },
         };
 
